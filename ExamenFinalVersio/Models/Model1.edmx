@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_ProjectEleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ConsommationCarburant">
+          <Key>
+            <PropertyRef Name="ID_ConsommationCarburant" />
+          </Key>
+          <Property Name="ID_ConsommationCarburant" Type="int" Nullable="false" />
+          <Property Name="Immatricule" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="VolumeGasoil" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="PrixBon" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="DateRemplissage" Type="date" />
+          <Property Name="Kilometrage" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ouvriers">
+          <Key>
+            <PropertyRef Name="CIN" />
+          </Key>
+          <Property Name="CIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NomComplet" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Ville" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fonction" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telephone" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DateNaissance" Type="date" />
+          <Property Name="DateDebutActivite" Type="date" />
+        </EntityType>
+        <EntityType Name="Paiements">
+          <Key>
+            <PropertyRef Name="ID_Paiements" />
+          </Key>
+          <Property Name="ID_Paiements" Type="int" Nullable="false" />
+          <Property Name="CIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Mois" Type="date" />
+          <Property Name="Montant" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pylones">
+          <Key>
+            <PropertyRef Name="NumeroPylone" />
+          </Key>
+          <Property Name="NumeroPylone" Type="int" Nullable="false" />
+          <Property Name="LigneElectrique" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Ville" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="EtatDegradation" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Repos">
+          <Key>
+            <PropertyRef Name="ID_Repos" />
+          </Key>
+          <Property Name="ID_Repos" Type="int" Nullable="false" />
+          <Property Name="CIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateRepos" Type="date" Nullable="false" />
+          <Property Name="MotifRepos" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Travaux">
+          <Key>
+            <PropertyRef Name="ID_Travaux" />
+          </Key>
+          <Property Name="ID_Travaux" Type="int" Nullable="false" />
+          <Property Name="NumeroPylone" Type="int" Nullable="false" />
+          <Property Name="CIN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateTravail" Type="date" />
+          <Property Name="TauxAvancement" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="PasswordL" Type="nvarchar" MaxLength="99" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicules">
+          <Key>
+            <PropertyRef Name="Immatricule" />
+          </Key>
+          <Property Name="Immatricule" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TypeCarburant" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="KilometrageInitial" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Consommat__Immat__24927208">
+          <End Role="Vehicules" Type="Self.Vehicules" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConsommationCarburant" Type="Self.ConsommationCarburant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicules">
+              <PropertyRef Name="Immatricule" />
+            </Principal>
+            <Dependent Role="ConsommationCarburant">
+              <PropertyRef Name="Immatricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiements__CIN__1ED998B2">
+          <End Role="Ouvriers" Type="Self.Ouvriers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Paiements" Type="Self.Paiements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Paiements">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repos__CIN__276EDEB3">
+          <End Role="Ouvriers" Type="Self.Ouvriers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Repos" Type="Self.Repos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Repos">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Travaux__CIN__1BFD2C07">
+          <End Role="Ouvriers" Type="Self.Ouvriers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Travaux">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Travaux__NumeroP__1B0907CE">
+          <End Role="Pylones" Type="Self.Pylones" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pylones">
+              <PropertyRef Name="NumeroPylone" />
+            </Principal>
+            <Dependent Role="Travaux">
+              <PropertyRef Name="NumeroPylone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_ProjectEleModelStoreContainer">
+          <EntitySet Name="ConsommationCarburant" EntityType="Self.ConsommationCarburant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ouvriers" EntityType="Self.Ouvriers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paiements" EntityType="Self.Paiements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pylones" EntityType="Self.Pylones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repos" EntityType="Self.Repos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Travaux" EntityType="Self.Travaux" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Utilisateur" EntityType="Self.Utilisateur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicules" EntityType="Self.Vehicules" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Consommat__Immat__24927208" Association="Self.FK__Consommat__Immat__24927208">
+            <End Role="Vehicules" EntitySet="Vehicules" />
+            <End Role="ConsommationCarburant" EntitySet="ConsommationCarburant" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiements__CIN__1ED998B2" Association="Self.FK__Paiements__CIN__1ED998B2">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Paiements" EntitySet="Paiements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repos__CIN__276EDEB3" Association="Self.FK__Repos__CIN__276EDEB3">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Repos" EntitySet="Repos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Travaux__CIN__1BFD2C07" Association="Self.FK__Travaux__CIN__1BFD2C07">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Travaux" EntitySet="Travaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Travaux__NumeroP__1B0907CE" Association="Self.FK__Travaux__NumeroP__1B0907CE">
+            <End Role="Pylones" EntitySet="Pylones" />
+            <End Role="Travaux" EntitySet="Travaux" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_ProjectEleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ConsommationCarburant">
+          <Key>
+            <PropertyRef Name="ID_ConsommationCarburant" />
+          </Key>
+          <Property Name="ID_ConsommationCarburant" Type="Int32" Nullable="false" />
+          <Property Name="Immatricule" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="VolumeGasoil" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="PrixBon" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="DateRemplissage" Type="DateTime" Precision="0" />
+          <Property Name="Kilometrage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vehicule" Relationship="Self.FK__Consommat__Immat__239E4DCF" FromRole="ConsommationCarburant" ToRole="Vehicules" />
+        </EntityType>
+        <EntityType Name="Ouvrier">
+          <Key>
+            <PropertyRef Name="CIN" />
+          </Key>
+          <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NomComplet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateNaissance" Type="DateTime" Precision="0" />
+          <Property Name="DateDebutActivite" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiements__CIN__1DE57479" FromRole="Ouvriers" ToRole="Paiements" />
+          <NavigationProperty Name="Repos" Relationship="Self.FK__Repos__CIN__267ABA7A" FromRole="Ouvriers" ToRole="Repos" />
+          <NavigationProperty Name="Travauxes" Relationship="Self.FK__Travaux__CIN__1B0907CE" FromRole="Ouvriers" ToRole="Travaux" />
+          <Property Name="fonction" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Paiement">
+          <Key>
+            <PropertyRef Name="ID_Paiements" />
+          </Key>
+          <Property Name="ID_Paiements" Type="Int32" Nullable="false" />
+          <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mois" Type="DateTime" Precision="0" />
+          <Property Name="Montant" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Paiements__CIN__1DE57479" FromRole="Paiements" ToRole="Ouvriers" />
+        </EntityType>
+        <EntityType Name="Pylone">
+          <Key>
+            <PropertyRef Name="NumeroPylone" />
+          </Key>
+          <Property Name="NumeroPylone" Type="Int32" Nullable="false" />
+          <Property Name="LigneElectrique" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+          <Property Name="EtatDegradation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Travauxes" Relationship="Self.FK__Travaux__NumeroP__1A14E395" FromRole="Pylones" ToRole="Travaux" />
+        </EntityType>
+        <EntityType Name="Repos">
+          <Key>
+            <PropertyRef Name="ID_Repos" />
+          </Key>
+          <Property Name="ID_Repos" Type="Int32" Nullable="false" />
+          <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateRepos" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MotifRepos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Repos__CIN__267ABA7A" FromRole="Repos" ToRole="Ouvriers" />
+        </EntityType>
+        <EntityType Name="Travaux">
+          <Key>
+            <PropertyRef Name="ID_Travaux" />
+          </Key>
+          <Property Name="ID_Travaux" Type="Int32" Nullable="false" />
+          <Property Name="NumeroPylone" Type="Int32" Nullable="false" />
+          <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateTravail" Type="DateTime" Precision="0" />
+          <Property Name="TauxAvancement" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Travaux__CIN__1B0907CE" FromRole="Travaux" ToRole="Ouvriers" />
+          <NavigationProperty Name="Pylone" Relationship="Self.FK__Travaux__NumeroP__1A14E395" FromRole="Travaux" ToRole="Pylones" />
+        </EntityType>
+        <EntityType Name="Utilisateur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordL" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vehicule">
+          <Key>
+            <PropertyRef Name="Immatricule" />
+          </Key>
+          <Property Name="Immatricule" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeCarburant" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KilometrageInitial" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ConsommationCarburants" Relationship="Self.FK__Consommat__Immat__239E4DCF" FromRole="Vehicules" ToRole="ConsommationCarburant" />
+        </EntityType>
+        <Association Name="FK__Consommat__Immat__239E4DCF">
+          <End Role="Vehicules" Type="Self.Vehicule" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ConsommationCarburant" Type="Self.ConsommationCarburant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicules">
+              <PropertyRef Name="Immatricule" />
+            </Principal>
+            <Dependent Role="ConsommationCarburant">
+              <PropertyRef Name="Immatricule" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Paiements__CIN__1DE57479">
+          <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Paiements" Type="Self.Paiement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Paiements">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repos__CIN__267ABA7A">
+          <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Repos" Type="Self.Repos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Repos">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Travaux__CIN__1B0907CE">
+          <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ouvriers">
+              <PropertyRef Name="CIN" />
+            </Principal>
+            <Dependent Role="Travaux">
+              <PropertyRef Name="CIN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Travaux__NumeroP__1A14E395">
+          <End Role="Pylones" Type="Self.Pylone" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pylones">
+              <PropertyRef Name="NumeroPylone" />
+            </Principal>
+            <Dependent Role="Travaux">
+              <PropertyRef Name="NumeroPylone" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_ProjectEleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ConsommationCarburants" EntityType="Self.ConsommationCarburant" />
+          <EntitySet Name="Ouvriers" EntityType="Self.Ouvrier" />
+          <EntitySet Name="Paiements" EntityType="Self.Paiement" />
+          <EntitySet Name="Pylones" EntityType="Self.Pylone" />
+          <EntitySet Name="Repos" EntityType="Self.Repos" />
+          <EntitySet Name="Travauxes" EntityType="Self.Travaux" />
+          <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+          <EntitySet Name="Vehicules" EntityType="Self.Vehicule" />
+          <AssociationSet Name="FK__Consommat__Immat__239E4DCF" Association="Self.FK__Consommat__Immat__239E4DCF">
+            <End Role="Vehicules" EntitySet="Vehicules" />
+            <End Role="ConsommationCarburant" EntitySet="ConsommationCarburants" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Paiements__CIN__1DE57479" Association="Self.FK__Paiements__CIN__1DE57479">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Paiements" EntitySet="Paiements" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repos__CIN__267ABA7A" Association="Self.FK__Repos__CIN__267ABA7A">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Repos" EntitySet="Repos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Travaux__CIN__1B0907CE" Association="Self.FK__Travaux__CIN__1B0907CE">
+            <End Role="Ouvriers" EntitySet="Ouvriers" />
+            <End Role="Travaux" EntitySet="Travauxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Travaux__NumeroP__1A14E395" Association="Self.FK__Travaux__NumeroP__1A14E395">
+            <End Role="Pylones" EntitySet="Pylones" />
+            <End Role="Travaux" EntitySet="Travauxes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_ProjectEleModelStoreContainer" CdmEntityContainer="db_ProjectEleEntities">
+          <EntitySetMapping Name="ConsommationCarburants">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.ConsommationCarburant">
+              <MappingFragment StoreEntitySet="ConsommationCarburant">
+                <ScalarProperty Name="ID_ConsommationCarburant" ColumnName="ID_ConsommationCarburant" />
+                <ScalarProperty Name="Immatricule" ColumnName="Immatricule" />
+                <ScalarProperty Name="VolumeGasoil" ColumnName="VolumeGasoil" />
+                <ScalarProperty Name="PrixBon" ColumnName="PrixBon" />
+                <ScalarProperty Name="DateRemplissage" ColumnName="DateRemplissage" />
+                <ScalarProperty Name="Kilometrage" ColumnName="Kilometrage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ouvriers">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Ouvrier">
+              <MappingFragment StoreEntitySet="Ouvriers">
+                <ScalarProperty Name="fonction" ColumnName="fonction" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="DateDebutActivite" ColumnName="DateDebutActivite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paiements">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Paiement">
+              <MappingFragment StoreEntitySet="Paiements">
+                <ScalarProperty Name="ID_Paiements" ColumnName="ID_Paiements" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="Mois" ColumnName="Mois" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pylones">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Pylone">
+              <MappingFragment StoreEntitySet="Pylones">
+                <ScalarProperty Name="NumeroPylone" ColumnName="NumeroPylone" />
+                <ScalarProperty Name="LigneElectrique" ColumnName="LigneElectrique" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="EtatDegradation" ColumnName="EtatDegradation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repos">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Repos">
+              <MappingFragment StoreEntitySet="Repos">
+                <ScalarProperty Name="ID_Repos" ColumnName="ID_Repos" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="DateRepos" ColumnName="DateRepos" />
+                <ScalarProperty Name="MotifRepos" ColumnName="MotifRepos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Travauxes">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Travaux">
+              <MappingFragment StoreEntitySet="Travaux">
+                <ScalarProperty Name="ID_Travaux" ColumnName="ID_Travaux" />
+                <ScalarProperty Name="NumeroPylone" ColumnName="NumeroPylone" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="DateTravail" ColumnName="DateTravail" />
+                <ScalarProperty Name="TauxAvancement" ColumnName="TauxAvancement" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Utilisateurs">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Utilisateur">
+              <MappingFragment StoreEntitySet="Utilisateur">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="PasswordL" ColumnName="PasswordL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicules">
+            <EntityTypeMapping TypeName="db_ProjectEleModel.Vehicule">
+              <MappingFragment StoreEntitySet="Vehicules">
+                <ScalarProperty Name="Immatricule" ColumnName="Immatricule" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="TypeCarburant" ColumnName="TypeCarburant" />
+                <ScalarProperty Name="KilometrageInitial" ColumnName="KilometrageInitial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

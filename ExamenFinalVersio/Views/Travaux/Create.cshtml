@@ -1,0 +1,70 @@
+﻿@model ExamenFinalVersio.Models.Travaux
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Travaux</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID_Travaux, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ID_Travaux, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ID_Travaux, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroPylone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.DropDownList("NumeroPylone", Model.NumeroPyloneList as SelectList, "-- Select NumeroPylone --", new { @class = "form-control" })*@
+            @Html.DropDownListFor(model => model.NumeroPylone, Model.NumeroPyloneList, "-- Select NumeroPylone --", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(model => model.NumeroPylone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CIN, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CIN, Model.ICIN as SelectList, "-- Select CIN --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateTravail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateTravail, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.DateTravail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TauxAvancement, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.TauxAvancement, Model.TauxAvancementList, "-- Select Taux Avancement --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TauxAvancement, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    <a href="@Url.Action("Index", "Travaux")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</div>

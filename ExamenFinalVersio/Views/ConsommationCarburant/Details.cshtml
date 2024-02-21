@@ -1,0 +1,68 @@
+﻿@model ExamenFinalVersio.Models.ConsommationCarburant
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>ConsommationCarburant</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_ConsommationCarburant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_ConsommationCarburant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatricule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatricule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VolumeGasoil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VolumeGasoil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrixBon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrixBon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRemplissage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRemplissage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kilometrage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kilometrage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "ConsommationCarburant", new { id = Model.ID_ConsommationCarburant })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "ConsommationCarburant")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>

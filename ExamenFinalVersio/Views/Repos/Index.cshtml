@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ExamenFinalVersio.Models.Repos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="@Url.Action("Create", "Repos")" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-add-to-queue"></i>
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Repos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateRepos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MotifRepos)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Repos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateRepos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MotifRepos)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Repos", new { id = item.ID_Repos })">
+                <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+            </a>
+
+            <a href="@Url.Action("Details", "Repos", new { id = item.ID_Repos })">
+                <i class="menu-icon tf-icons bx bx-show"></i>
+            </a>
+
+            <a href="@Url.Action("Delete", "Repos", new { id = item.ID_Repos })">
+                <i class="menu-icon tf-icons bx bx-trash"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

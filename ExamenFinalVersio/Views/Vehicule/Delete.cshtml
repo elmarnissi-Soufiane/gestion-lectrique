@@ -1,0 +1,56 @@
+﻿@model ExamenFinalVersio.Models.Vehicule
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Vehicule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatricule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatricule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCarburant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeCarburant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KilometrageInitial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KilometrageInitial)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a href="@Url.Action("Index", "Vehicule")">
+                <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+            </a>
+        </div>
+    }
+</div>

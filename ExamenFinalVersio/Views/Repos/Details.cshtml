@@ -1,0 +1,52 @@
+﻿@model ExamenFinalVersio.Models.Repos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Repos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Repos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Repos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRepos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRepos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MotifRepos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MotifRepos)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Repos", new { id = Model.ID_Repos })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "Repos")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>

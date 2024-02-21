@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ExamenFinalVersio.Models.Ouvrier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="@Url.Action("Create", "Ouvrier")" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-add-to-queue"></i>
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomComplet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fonction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebutActivite)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomComplet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fonction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDebutActivite)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Ouvrier", new { id = item.CIN })">
+                <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+            </a>
+
+            <a href="@Url.Action("Details", "Ouvrier", new { id = item.CIN })">
+                <i class="menu-icon tf-icons bx bx-show"></i>
+            </a>
+
+            <a href="@Url.Action("Delete", "Ouvrier", new { id = item.CIN })">
+                <i class="menu-icon tf-icons bx bx-trash"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

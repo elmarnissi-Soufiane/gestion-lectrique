@@ -1,0 +1,52 @@
+﻿@model ExamenFinalVersio.Models.Vehicule
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Vehicule</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Immatricule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Immatricule)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeCarburant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeCarburant)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KilometrageInitial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KilometrageInitial)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Vehicule", new { id = Model.Immatricule })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "Vehicule")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>

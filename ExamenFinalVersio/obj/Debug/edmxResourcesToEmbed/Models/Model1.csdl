@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_ProjectEleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ConsommationCarburant">
+    <Key>
+      <PropertyRef Name="ID_ConsommationCarburant" />
+    </Key>
+    <Property Name="ID_ConsommationCarburant" Type="Int32" Nullable="false" />
+    <Property Name="Immatricule" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VolumeGasoil" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="PrixBon" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="DateRemplissage" Type="DateTime" Precision="0" />
+    <Property Name="Kilometrage" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Vehicule" Relationship="Self.FK__Consommat__Immat__239E4DCF" FromRole="ConsommationCarburant" ToRole="Vehicules" />
+  </EntityType>
+  <EntityType Name="Ouvrier">
+    <Key>
+      <PropertyRef Name="CIN" />
+    </Key>
+    <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NomComplet" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateNaissance" Type="DateTime" Precision="0" />
+    <Property Name="DateDebutActivite" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Paiements" Relationship="Self.FK__Paiements__CIN__1DE57479" FromRole="Ouvriers" ToRole="Paiements" />
+    <NavigationProperty Name="Repos" Relationship="Self.FK__Repos__CIN__267ABA7A" FromRole="Ouvriers" ToRole="Repos" />
+    <NavigationProperty Name="Travauxes" Relationship="Self.FK__Travaux__CIN__1B0907CE" FromRole="Ouvriers" ToRole="Travaux" />
+    <Property Name="fonction" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Paiement">
+    <Key>
+      <PropertyRef Name="ID_Paiements" />
+    </Key>
+    <Property Name="ID_Paiements" Type="Int32" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mois" Type="DateTime" Precision="0" />
+    <Property Name="Montant" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Paiements__CIN__1DE57479" FromRole="Paiements" ToRole="Ouvriers" />
+  </EntityType>
+  <EntityType Name="Pylone">
+    <Key>
+      <PropertyRef Name="NumeroPylone" />
+    </Key>
+    <Property Name="NumeroPylone" Type="Int32" Nullable="false" />
+    <Property Name="LigneElectrique" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ville" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Longitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+    <Property Name="Latitude" Type="Decimal" Precision="9" Scale="6" Nullable="false" />
+    <Property Name="EtatDegradation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Travauxes" Relationship="Self.FK__Travaux__NumeroP__1A14E395" FromRole="Pylones" ToRole="Travaux" />
+  </EntityType>
+  <EntityType Name="Repos">
+    <Key>
+      <PropertyRef Name="ID_Repos" />
+    </Key>
+    <Property Name="ID_Repos" Type="Int32" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateRepos" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MotifRepos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Repos__CIN__267ABA7A" FromRole="Repos" ToRole="Ouvriers" />
+  </EntityType>
+  <EntityType Name="Travaux">
+    <Key>
+      <PropertyRef Name="ID_Travaux" />
+    </Key>
+    <Property Name="ID_Travaux" Type="Int32" Nullable="false" />
+    <Property Name="NumeroPylone" Type="Int32" Nullable="false" />
+    <Property Name="CIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateTravail" Type="DateTime" Precision="0" />
+    <Property Name="TauxAvancement" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Ouvrier" Relationship="Self.FK__Travaux__CIN__1B0907CE" FromRole="Travaux" ToRole="Ouvriers" />
+    <NavigationProperty Name="Pylone" Relationship="Self.FK__Travaux__NumeroP__1A14E395" FromRole="Travaux" ToRole="Pylones" />
+  </EntityType>
+  <EntityType Name="Utilisateur">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordL" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehicule">
+    <Key>
+      <PropertyRef Name="Immatricule" />
+    </Key>
+    <Property Name="Immatricule" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TypeCarburant" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="KilometrageInitial" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ConsommationCarburants" Relationship="Self.FK__Consommat__Immat__239E4DCF" FromRole="Vehicules" ToRole="ConsommationCarburant" />
+  </EntityType>
+  <Association Name="FK__Consommat__Immat__239E4DCF">
+    <End Role="Vehicules" Type="Self.Vehicule" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ConsommationCarburant" Type="Self.ConsommationCarburant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicules">
+        <PropertyRef Name="Immatricule" />
+      </Principal>
+      <Dependent Role="ConsommationCarburant">
+        <PropertyRef Name="Immatricule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Paiements__CIN__1DE57479">
+    <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Paiements" Type="Self.Paiement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ouvriers">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Paiements">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Repos__CIN__267ABA7A">
+    <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Repos" Type="Self.Repos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ouvriers">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Repos">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Travaux__CIN__1B0907CE">
+    <End Role="Ouvriers" Type="Self.Ouvrier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ouvriers">
+        <PropertyRef Name="CIN" />
+      </Principal>
+      <Dependent Role="Travaux">
+        <PropertyRef Name="CIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Travaux__NumeroP__1A14E395">
+    <End Role="Pylones" Type="Self.Pylone" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Travaux" Type="Self.Travaux" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pylones">
+        <PropertyRef Name="NumeroPylone" />
+      </Principal>
+      <Dependent Role="Travaux">
+        <PropertyRef Name="NumeroPylone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_ProjectEleEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ConsommationCarburants" EntityType="Self.ConsommationCarburant" />
+    <EntitySet Name="Ouvriers" EntityType="Self.Ouvrier" />
+    <EntitySet Name="Paiements" EntityType="Self.Paiement" />
+    <EntitySet Name="Pylones" EntityType="Self.Pylone" />
+    <EntitySet Name="Repos" EntityType="Self.Repos" />
+    <EntitySet Name="Travauxes" EntityType="Self.Travaux" />
+    <EntitySet Name="Utilisateurs" EntityType="Self.Utilisateur" />
+    <EntitySet Name="Vehicules" EntityType="Self.Vehicule" />
+    <AssociationSet Name="FK__Consommat__Immat__239E4DCF" Association="Self.FK__Consommat__Immat__239E4DCF">
+      <End Role="Vehicules" EntitySet="Vehicules" />
+      <End Role="ConsommationCarburant" EntitySet="ConsommationCarburants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Paiements__CIN__1DE57479" Association="Self.FK__Paiements__CIN__1DE57479">
+      <End Role="Ouvriers" EntitySet="Ouvriers" />
+      <End Role="Paiements" EntitySet="Paiements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Repos__CIN__267ABA7A" Association="Self.FK__Repos__CIN__267ABA7A">
+      <End Role="Ouvriers" EntitySet="Ouvriers" />
+      <End Role="Repos" EntitySet="Repos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Travaux__CIN__1B0907CE" Association="Self.FK__Travaux__CIN__1B0907CE">
+      <End Role="Ouvriers" EntitySet="Ouvriers" />
+      <End Role="Travaux" EntitySet="Travauxes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Travaux__NumeroP__1A14E395" Association="Self.FK__Travaux__NumeroP__1A14E395">
+      <End Role="Pylones" EntitySet="Pylones" />
+      <End Role="Travaux" EntitySet="Travauxes" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

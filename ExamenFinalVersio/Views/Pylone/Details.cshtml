@@ -1,0 +1,68 @@
+﻿@model ExamenFinalVersio.Models.Pylone
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Pylone</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroPylone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPylone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LigneElectrique)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LigneElectrique)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtatDegradation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EtatDegradation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Pylone", new { id = Model.NumeroPylone })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "Pylone")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>

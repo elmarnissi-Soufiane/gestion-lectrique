@@ -1,0 +1,52 @@
+﻿@model ExamenFinalVersio.Models.Paiement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Paiement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Paiements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Paiements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mois)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mois)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Montant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Montant)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Paiement", new { id = Model.ID_Paiements })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "Paiement")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>

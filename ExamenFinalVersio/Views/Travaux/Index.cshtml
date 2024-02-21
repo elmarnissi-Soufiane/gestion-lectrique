@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ExamenFinalVersio.Models.Travaux>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    <a href="@Url.Action("Create", "Travaux")" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-add-to-queue"></i>
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Travaux)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroPylone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CIN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTravail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TauxAvancement)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Travaux)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroPylone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CIN)
+            @*@Html.DropDownListFor(modelItem => item.CIN, new SelectList(listOfCINValues, "Value", "Text"), new { @class = "form-control" })*@
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTravail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TauxAvancement)
+        </td>
+        <td>
+            <a href="@Url.Action("Edit", "Travaux", new { id = item.ID_Travaux })">
+                <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+            </a>
+
+            <a href="@Url.Action("Details", "Travaux", new { id = item.ID_Travaux })">
+                <i class="menu-icon tf-icons bx bx-show"></i>
+            </a>
+
+            <a href="@Url.Action("Delete", "Travaux", new { id = item.ID_Travaux })">
+                <i class="menu-icon tf-icons bx bx-trash"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

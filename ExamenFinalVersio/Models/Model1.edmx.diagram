@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="da914dd2a119428a824b3780c1c8eef7" Name="Diagram1">
+        <EntityTypeShape EntityType="db_ProjectEleModel.ConsommationCarburant" Width="1.5" PointX="8" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Ouvrier" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Paiement" Width="1.5" PointX="1.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Pylone" Width="1.5" PointX="1.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Repos" Width="1.5" PointX="9" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Travaux" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Utilisateur" Width="1.5" PointX="8.875" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectEleModel.Vehicule" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <AssociationConnector Association="db_ProjectEleModel.FK__Consommat__Immat__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectEleModel.FK__Paiements__CIN__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectEleModel.FK__Repos__CIN__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectEleModel.FK__Travaux__CIN__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectEleModel.FK__Travaux__NumeroP__1A14E395" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

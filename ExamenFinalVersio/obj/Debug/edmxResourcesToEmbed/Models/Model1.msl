@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_ProjectEleModelStoreContainer" CdmEntityContainer="db_ProjectEleEntities">
+    <EntitySetMapping Name="ConsommationCarburants">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.ConsommationCarburant">
+        <MappingFragment StoreEntitySet="ConsommationCarburant">
+          <ScalarProperty Name="ID_ConsommationCarburant" ColumnName="ID_ConsommationCarburant" />
+          <ScalarProperty Name="Immatricule" ColumnName="Immatricule" />
+          <ScalarProperty Name="VolumeGasoil" ColumnName="VolumeGasoil" />
+          <ScalarProperty Name="PrixBon" ColumnName="PrixBon" />
+          <ScalarProperty Name="DateRemplissage" ColumnName="DateRemplissage" />
+          <ScalarProperty Name="Kilometrage" ColumnName="Kilometrage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ouvriers">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Ouvrier">
+        <MappingFragment StoreEntitySet="Ouvriers">
+          <ScalarProperty Name="fonction" ColumnName="fonction" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="NomComplet" ColumnName="NomComplet" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+          <ScalarProperty Name="DateDebutActivite" ColumnName="DateDebutActivite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paiements">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Paiement">
+        <MappingFragment StoreEntitySet="Paiements">
+          <ScalarProperty Name="ID_Paiements" ColumnName="ID_Paiements" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="Mois" ColumnName="Mois" />
+          <ScalarProperty Name="Montant" ColumnName="Montant" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pylones">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Pylone">
+        <MappingFragment StoreEntitySet="Pylones">
+          <ScalarProperty Name="NumeroPylone" ColumnName="NumeroPylone" />
+          <ScalarProperty Name="LigneElectrique" ColumnName="LigneElectrique" />
+          <ScalarProperty Name="Ville" ColumnName="Ville" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="EtatDegradation" ColumnName="EtatDegradation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Repos">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Repos">
+        <MappingFragment StoreEntitySet="Repos">
+          <ScalarProperty Name="ID_Repos" ColumnName="ID_Repos" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="DateRepos" ColumnName="DateRepos" />
+          <ScalarProperty Name="MotifRepos" ColumnName="MotifRepos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Travauxes">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Travaux">
+        <MappingFragment StoreEntitySet="Travaux">
+          <ScalarProperty Name="ID_Travaux" ColumnName="ID_Travaux" />
+          <ScalarProperty Name="NumeroPylone" ColumnName="NumeroPylone" />
+          <ScalarProperty Name="CIN" ColumnName="CIN" />
+          <ScalarProperty Name="DateTravail" ColumnName="DateTravail" />
+          <ScalarProperty Name="TauxAvancement" ColumnName="TauxAvancement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Utilisateurs">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Utilisateur">
+        <MappingFragment StoreEntitySet="Utilisateur">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="PasswordL" ColumnName="PasswordL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicules">
+      <EntityTypeMapping TypeName="db_ProjectEleModel.Vehicule">
+        <MappingFragment StoreEntitySet="Vehicules">
+          <ScalarProperty Name="Immatricule" ColumnName="Immatricule" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="TypeCarburant" ColumnName="TypeCarburant" />
+          <ScalarProperty Name="KilometrageInitial" ColumnName="KilometrageInitial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

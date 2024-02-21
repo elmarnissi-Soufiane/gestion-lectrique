@@ -1,0 +1,60 @@
+﻿@model ExamenFinalVersio.Models.Travaux
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <h4>Travaux</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Travaux)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_Travaux)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroPylone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPylone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTravail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTravail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TauxAvancement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TauxAvancement)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Edit", "Travaux", new { id = Model.ID_Travaux })">
+        <i class="menu-icon tf-icons bx bx-edit-alt"></i>
+    </a>
+    <a href="@Url.Action("Index", "Travaux")">
+        <i class="menu-icon tf-icons bx bx-arrow-back"></i>
+    </a>
+</p>
